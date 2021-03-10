@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 
@@ -148,6 +147,14 @@ app.delete("/account", verifyCPFExistence, (request, response) => {
   customers.splice(customer, 1);
 
   return response.status(204);
+})
+
+app.get("/balance", verifyCPFExistence, ( request, response ) => {
+  const { customer } = request;
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
 })
 
 app.listen(3333);
