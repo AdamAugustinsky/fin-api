@@ -142,4 +142,12 @@ app.get("/account", verifyCPFExistence, (request, response) => {
   return response.send(customer);
 })
 
+app.delete("/account", verifyCPFExistence, (request, response) => {
+  const { customer } = request;
+
+  customers.splice(customer, 1);
+
+  return response.status(204);
+})
+
 app.listen(3333);
