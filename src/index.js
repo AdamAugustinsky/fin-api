@@ -126,4 +126,14 @@ app.get("/statement/date", verifyCPFExistence, (request, response) => {
   return response.json(statement);
 })
 
+
+app.put("/account", verifyCPFExistence, (request, response) => {
+  const { name } = request.body
+  const { customer } = request;
+
+  customer.name = name;
+
+  return response.status(201).send();
+})
+
 app.listen(3333);
