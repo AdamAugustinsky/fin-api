@@ -136,4 +136,10 @@ app.put("/account", verifyCPFExistence, (request, response) => {
   return response.status(201).send();
 })
 
+app.get("/account", verifyCPFExistence, (request, response) => {
+  const { customer } = request;
+
+  return response.send(customer);
+})
+
 app.listen(3333);
